@@ -56,12 +56,15 @@ const TodoList=()=>{
     //     setTodos(newTodos);
     // })
     const handleUpdateTask=(index)=>{
-        console.log(todos);
+        let newTodos=Array.from(todos);
+        // console.log(newTodos);
         console.log(`${todos[index]} 処理前: ${todos[index].isComplete}`);
-        todos[index].isComplete = !todos[index].isComplete;
+        newTodos[index].isComplete = !todos[index].isComplete;
         console.log(`${todos[index]} 処理後: ${todos[index].isComplete}`);
-        console.log(todos);
-        setTodos(todos);
+        // console.log(todos);
+        setTodos(newTodos);
+        // console.log(`${todos[index]} レンダリング後: ${todos[index].isComplete}`);
+        // console.log(`${newTodos[index]} newレンダリング後: ${todos[index].isComplete}`);
     }
 
     return(
