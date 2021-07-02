@@ -41,20 +41,28 @@ const TodoList=()=>{
         setTodos(newTodos);
     }
 
-    const handleUpdateTask=(index=>{
-        let newTodos=todos.map((todo, todoIndex)=>{
-            if(todoIndex === index){
-                // 71行目でクリックした番手と配列の番手が一致（これつけないと全部が対象になる。）
-                todo.isComplete =!todo.isComplete
-                // isCompleteを今の状態の逆にします
-            }   //else{
-                return todo;
-            // }
-            //番手が違うものは、そのままtodoで返す。
-            // ★ここにelseを付けると反応しない。
-        });
-        setTodos(newTodos);
-    })
+    // const handleUpdateTask=(index=>{
+    //     let newTodos=todos.map((todo, todoIndex)=>{
+    //         if(todoIndex === index){
+    //             // 71行目でクリックした番手と配列の番手が一致（これつけないと全部が対象になる。）
+    //             todo.isComplete =!todo.isComplete
+    //             // isCompleteを今の状態の逆にします
+    //         }   //else{
+    //             return todo;
+    //         // }
+    //         //番手が違うものは、そのままtodoで返す。
+    //         // ★ここにelseを付けると反応しない。
+    //     });
+    //     setTodos(newTodos);
+    // })
+    const handleUpdateTask=(index)=>{
+        console.log(todos);
+        console.log(`${todos[index]} 処理前: ${todos[index].isComplete}`);
+        todos[index].isComplete = !todos[index].isComplete;
+        console.log(`${todos[index]} 処理後: ${todos[index].isComplete}`);
+        console.log(todos);
+        setTodos(todos);
+    }
 
     return(
         <div>
@@ -71,7 +79,7 @@ const TodoList=()=>{
                         style={todo.isComplete ===true ? {textDecoration: 'line-through'}: {} }
                         // isCompleteがtrueならcssをつける処理の三項演算子
                     >{todo.task}                
-                    <span onClick={()=>handleUpdateTask(index)}>X</span></li>       {/* (3) */}
+                    <span onClick={()=>handleUpdateTask(index)}>X</span></li>       // (3)
                     // key情報はつけないとエラーが発生する。
                     // 並び替えを行わない場合はindex(mapの第二引数)をつけると問題は解決する。
 
@@ -86,5 +94,3 @@ const TodoList=()=>{
 
 
 export default TodoList;
-
-
